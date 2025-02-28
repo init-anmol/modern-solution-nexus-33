@@ -34,7 +34,9 @@ const About = () => {
     <section id="about" className="py-20 md:py-32 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none -z-10">
-        <div className="absolute right-0 top-1/4 w-64 h-64 bg-gradient-to-bl from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-full blur-3xl opacity-70"></div>
+        <div className="absolute left-0 top-1/4 w-64 h-64 bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-900/10 dark:to-blue-900/10 rounded-full blur-3xl opacity-70"></div>
+        <div className="absolute right-0 top-1/4 w-80 h-80 bg-gradient-to-bl from-rose-50 to-orange-50 dark:from-rose-900/10 dark:to-orange-900/10 rounded-full blur-3xl opacity-70"></div>
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-t from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-full blur-3xl opacity-50"></div>
       </div>
 
       <div className="section-container">

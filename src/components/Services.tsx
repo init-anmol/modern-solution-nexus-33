@@ -49,7 +49,13 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/30">
+    <section id="services" className="py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900/30 dark:to-slate-900/10 relative">
+      {/* Background elements */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-blue-50 to-teal-50 dark:from-blue-900/10 dark:to-teal-900/10 rounded-full blur-3xl opacity-70"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tr from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-full blur-3xl opacity-70"></div>
+      </div>
+      
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 data-aos="fade-up" className="section-title">

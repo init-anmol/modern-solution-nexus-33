@@ -51,11 +51,13 @@ const Solutions = () => {
   return (
     <section
       id="solutions"
-      className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden"
+      className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-900/30 relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute -left-64 top-1/3 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-purple-50/50 to-blue-50/50 dark:from-purple-900/5 dark:to-blue-900/5 blur-3xl"></div>
+        <div className="absolute right-0 bottom-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-tl from-teal-50/50 to-blue-50/50 dark:from-teal-900/5 dark:to-blue-900/5 blur-3xl"></div>
+        <div className="absolute left-1/3 bottom-0 w-[600px] h-[400px] rounded-full bg-gradient-to-t from-orange-50/30 to-rose-50/30 dark:from-orange-900/5 dark:to-rose-900/5 blur-3xl"></div>
       </div>
 
       <div className="section-container">

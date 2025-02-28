@@ -7,8 +7,9 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center py-32">
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-purple-100 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 blur-3xl opacity-30"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 blur-3xl opacity-30"></div>
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-bl from-purple-200 to-blue-100 dark:from-purple-900/20 dark:to-blue-900/20 blur-3xl opacity-40"></div>
+        <div className="absolute -top-40 left-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-teal-100 to-blue-100 dark:from-teal-900/10 dark:to-blue-900/10 blur-3xl opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-100 to-rose-100 dark:from-blue-900/20 dark:to-rose-900/20 blur-3xl opacity-40"></div>
       </div>
 
       <div className="section-container">
