@@ -28,6 +28,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      
+      // Update URL hash without jumping
+      window.history.pushState(null, "", href);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -39,7 +52,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <a href="#" className="text-2xl font-display font-bold tracking-tight">
+            <a 
+              href="#" 
+              className="text-2xl font-display font-bold tracking-tight"
+              onClick={(e) => handleLinkClick(e, "#")}
+            >
               Nexus<span className="text-gradient">Dev</span>
             </a>
           </div>
@@ -51,6 +68,7 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className="text-sm font-medium transition-colors hover:text-primary"
+                onClick={(e) => handleLinkClick(e, link.href)}
               >
                 {link.name}
               </a>
@@ -77,7 +95,7 @@ const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleLinkClick(e, link.href)}
               >
                 {link.name}
               </a>

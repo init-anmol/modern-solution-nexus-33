@@ -2,6 +2,15 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Brand logos
+const brands = [
+  { name: "Microsoft", logo: "/microsoft-logo.svg" },
+  { name: "Google", logo: "/google-logo.svg" },
+  { name: "Amazon", logo: "/amazon-logo.svg" },
+  { name: "IBM", logo: "/ibm-logo.svg" },
+  { name: "Adobe", logo: "/adobe-logo.svg" },
+];
+
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center py-32">
@@ -46,13 +55,12 @@ const Hero = () => {
 
           <div data-aos="fade-up" data-aos-delay="700" className="mt-16">
             <p className="text-sm text-muted-foreground mb-4">Trusted by innovative companies</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="h-8 w-24 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"
-                />
-              ))}
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+              <div className="h-8 w-28 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/microsoft.svg')" }}></div>
+              <div className="h-8 w-28 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/google.svg')" }}></div>
+              <div className="h-8 w-28 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/amazon.svg')" }}></div>
+              <div className="h-8 w-28 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/ibm.svg')" }}></div>
+              <div className="h-8 w-28 bg-contain bg-no-repeat bg-center" style={{ backgroundImage: "url('https://cdn.jsdelivr.net/npm/simple-icons@v4/icons/adobe.svg')" }}></div>
             </div>
           </div>
         </div>
