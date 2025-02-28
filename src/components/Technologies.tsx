@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { Tab } from "@headlessui/react";
 import { Code, Database, Globe, Layers, Server, Shield } from "lucide-react";
 
@@ -79,58 +79,37 @@ const categories = [
 ];
 
 const Technologies = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   useEffect(() => {
     // Animation for skill bars when they become visible
-    if (isVisible) {
+    const animateSkillBars = () => {
       const bars = document.querySelectorAll(".skill-bar-fill");
-      bars.forEach((bar, index) => {
-        setTimeout(() => {
-          (bar as HTMLElement).style.width = (bar as HTMLElement).getAttribute("data-level") + "%";
-        }, 100 * index);
+      bars.forEach((bar) => {
+        const level = bar.getAttribute("data-level");
+        (bar as HTMLElement).style.width = `${level}%`;
       });
-    }
-  }, [isVisible]);
+    };
+
+    // Set a timeout to ensure AOS animations complete first
+    const timer = setTimeout(() => {
+      animateSkillBars();
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section id="technologies" ref={sectionRef} className="py-20 md:py-32">
+    <section id="technologies" className="py-20 md:py-32">
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className={`section-title ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+          <h2 data-aos="fade-up" className="section-title">
             Our <span className="text-gradient">Technologies</span>
           </h2>
-          <p className={`section-subtitle ${isVisible ? "animate-fade-in" : "opacity-0"} delay-100`}>
+          <p data-aos="fade-up" data-aos-delay="100" className="section-subtitle">
             We leverage cutting-edge technologies to build robust, scalable, and future-proof software solutions.
           </p>
         </div>
 
-        <div className={`${isVisible ? "animate-fade-in" : "opacity-0"} delay-200`}>
+        <div data-aos="fade-up" data-aos-delay="200">
           <Tab.Group>
             <Tab.List className="flex space-x-1 rounded-xl bg-secondary p-1 mb-8 max-w-3xl mx-auto">
               {categories.map((category) => (
@@ -163,7 +142,7 @@ const Technologies = () => {
                   </h3>
                   <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
                     {category.technologies.map((tech, techIdx) => (
-                      <div key={techIdx} className="mb-6">
+                      <div key={techIdx} className="mb-6" data-aos="fade-up" data-aos-delay={300 + techIdx * 50}>
                         <div className="flex justify-between items-center mb-2">
                           <span className="font-medium">{tech.name}</span>
                           <span className="text-sm text-muted-foreground">
@@ -173,7 +152,7 @@ const Technologies = () => {
                         <div className="h-2 bg-secondary rounded-full overflow-hidden">
                           <div
                             className="skill-bar-fill h-full bg-gradient-to-r from-primary to-purple-600 rounded-full transition-all duration-1000 ease-out"
-                            style={{ width: isVisible ? "0%" : "0%" }}
+                            style={{ width: "0%" }}
                             data-level={tech.level}
                           ></div>
                         </div>

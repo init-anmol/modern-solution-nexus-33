@@ -1,15 +1,8 @@
 
-import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center py-32">
       {/* Background elements */}
@@ -20,13 +13,7 @@ const Hero = () => {
 
       <div className="section-container">
         <div className="max-w-4xl mx-auto text-center">
-          <div
-            className={`transition-all duration-1000 ${
-              isLoaded
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
+          <div data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6">
               Transforming Ideas into
               <br />
@@ -34,45 +21,29 @@ const Hero = () => {
             </h1>
           </div>
 
-          <div
-            className={`transition-all duration-1000 delay-300 ${
-              isLoaded
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
+          <div data-aos="fade-up" data-aos-delay="300">
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
               We craft innovative software solutions that drive business growth and
               deliver exceptional user experiences.
             </p>
           </div>
 
-          <div
-            className={`flex flex-wrap justify-center gap-4 transition-all duration-1000 delay-500 ${
-              isLoaded
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <Button size="lg" className="magic-shine button-hover">
-              Explore Our Services <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="gradient-edge button-hover"
-            >
-              Contact Us
-            </Button>
+          <div data-aos="fade-up" data-aos-delay="500">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button size="lg" className="magic-shine button-hover">
+                Explore Our Services <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="gradient-edge button-hover"
+              >
+                Contact Us
+              </Button>
+            </div>
           </div>
 
-          <div
-            className={`mt-16 transition-all duration-1000 delay-700 ${
-              isLoaded
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
+          <div data-aos="fade-up" data-aos-delay="700" className="mt-16">
             <p className="text-sm text-muted-foreground mb-4">Trusted by innovative companies</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
               {Array.from({ length: 5 }).map((_, i) => (

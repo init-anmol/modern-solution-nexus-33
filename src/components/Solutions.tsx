@@ -1,5 +1,4 @@
 
-import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Building, ShoppingBag, Stethoscope, Wheat, Briefcase, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -49,37 +48,9 @@ const solutions = [
 ];
 
 const Solutions = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
     <section
       id="solutions"
-      ref={sectionRef}
       className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/30 relative overflow-hidden"
     >
       {/* Background decoration */}
@@ -89,10 +60,10 @@ const Solutions = () => {
 
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className={`section-title ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+          <h2 data-aos="fade-up" className="section-title">
             Industry <span className="text-gradient">Solutions</span>
           </h2>
-          <p className={`section-subtitle ${isVisible ? "animate-fade-in" : "opacity-0"} delay-100`}>
+          <p data-aos="fade-up" data-aos-delay="100" className="section-subtitle">
             Specialized software solutions tailored for the unique challenges and requirements of different industries.
           </p>
         </div>
@@ -101,12 +72,9 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div
               key={index}
-              className={`glass-card p-8 flex flex-col h-full ${
-                isVisible
-                  ? "animate-fade-in"
-                  : "opacity-0"
-              }`}
-              style={{ animationDelay: `${index * 100 + 200}ms` }}
+              data-aos="fade-up"
+              data-aos-delay={200 + index * 100}
+              className="glass-card p-8 flex flex-col h-full"
             >
               <div className="mb-6 text-primary">{solution.icon}</div>
               <h3 className="text-xl font-display font-semibold mb-3">{solution.title}</h3>
@@ -122,7 +90,7 @@ const Solutions = () => {
           ))}
         </div>
 
-        <div className={`mt-16 text-center ${isVisible ? "animate-fade-in" : "opacity-0"} delay-700`}>
+        <div data-aos="fade-up" data-aos-delay="700" className="mt-16 text-center">
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             Don't see a solution for your industry? We specialize in creating custom solutions for unique business needs.
           </p>

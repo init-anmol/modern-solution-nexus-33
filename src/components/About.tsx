@@ -30,35 +30,8 @@ const values = [
 ];
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section id="about" ref={sectionRef} className="py-20 md:py-32 relative">
+    <section id="about" className="py-20 md:py-32 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute right-0 top-1/4 w-64 h-64 bg-gradient-to-bl from-purple-50 to-blue-50 dark:from-purple-900/10 dark:to-blue-900/10 rounded-full blur-3xl opacity-70"></div>
@@ -66,16 +39,16 @@ const About = () => {
 
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className={`section-title ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+          <h2 data-aos="fade-up" className="section-title">
             About <span className="text-gradient">Us</span>
           </h2>
-          <p className={`section-subtitle ${isVisible ? "animate-fade-in" : "opacity-0"} delay-100`}>
+          <p data-aos="fade-up" data-aos-delay="100" className="section-subtitle">
             We are a team of passionate technologists dedicated to crafting innovative software solutions that empower businesses to thrive in the digital age.
           </p>
         </div>
 
         <div className="flex flex-col md:flex-row md:items-start gap-16">
-          <div className={`md:w-1/2 ${isVisible ? "animate-fade-in" : "opacity-0"} delay-200`}>
+          <div data-aos="fade-right" data-aos-delay="200" className="md:w-1/2">
             <div className="glass-card p-8 relative h-full">
               <h3 className="text-2xl font-display font-semibold mb-4">Our Story</h3>
               <p className="text-muted-foreground mb-4">
@@ -90,12 +63,14 @@ const About = () => {
             </div>
           </div>
 
-          <div className={`md:w-1/2 ${isVisible ? "animate-fade-in" : "opacity-0"} delay-300`}>
+          <div data-aos="fade-left" data-aos-delay="300" className="md:w-1/2">
             <h3 className="text-2xl font-display font-semibold mb-6">Our Values</h3>
             <div className="grid gap-6">
               {values.map((value, index) => (
                 <div
                   key={index}
+                  data-aos="fade-up"
+                  data-aos-delay={400 + index * 100}
                   className="glass-card p-6 flex items-start hover-lift"
                 >
                   <div className="mr-4 mt-1 p-2 bg-primary/5 rounded-lg text-primary">

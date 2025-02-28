@@ -1,5 +1,7 @@
 
 import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,25 +13,24 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   useEffect(() => {
-    // Intersection Observer for animation-on-scroll
-    const animatedElements = document.querySelectorAll(".animate-on-scroll");
-    
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    
-    animatedElements.forEach((el) => observer.observe(el));
-    
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 50,
+      delay: 0,
+    });
+
+    // Refresh AOS on window resize
+    window.addEventListener('resize', () => {
+      AOS.refresh();
+    });
+
     return () => {
-      animatedElements.forEach((el) => observer.unobserve(el));
+      window.removeEventListener('resize', () => {
+        AOS.refresh();
+      });
     };
   }, []);
 

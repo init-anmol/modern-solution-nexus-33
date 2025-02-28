@@ -1,5 +1,4 @@
 
-import { useState, useEffect, useRef } from "react";
 import { Cpu, Cloud, Smartphone, Code, GitMerge, LineChart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -49,41 +48,14 @@ const services = [
 ];
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.1
-      }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section id="services" ref={sectionRef} className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/30">
+    <section id="services" className="py-20 md:py-32 bg-slate-50 dark:bg-slate-900/30">
       <div className="section-container">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className={`section-title ${isVisible ? "animate-fade-in" : "opacity-0"}`}>
+          <h2 data-aos="fade-up" className="section-title">
             Our <span className="text-gradient">Services</span>
           </h2>
-          <p className={`section-subtitle ${isVisible ? "animate-fade-in" : "opacity-0"} delay-100`}>
+          <p data-aos="fade-up" data-aos-delay="100" className="section-subtitle">
             Comprehensive software development services tailored to meet your specific business needs and technological requirements.
           </p>
         </div>
@@ -92,12 +64,9 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`glass-card p-8 flex flex-col h-full hover-lift ${
-                isVisible
-                  ? "animate-fade-in"
-                  : "opacity-0"
-              }`}
-              style={{ animationDelay: `${index * 100 + 200}ms` }}
+              data-aos="fade-up"
+              data-aos-delay={200 + index * 100}
+              className="glass-card p-8 flex flex-col h-full hover-lift"
             >
               <div className="mb-6 text-primary">{service.icon}</div>
               <h3 className="text-xl font-display font-semibold mb-3">{service.title}</h3>
