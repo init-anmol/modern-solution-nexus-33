@@ -1,5 +1,5 @@
 
-import { Check, Code, Flask, LayoutPlaneboard, MessagesSquare, Wrench } from "lucide-react";
+import { Check, Code, Beaker, LayoutDashboard, MessagesSquare, Wrench } from "lucide-react";
 
 const steps = [
   {
@@ -9,7 +9,7 @@ const steps = [
     color: "from-blue-500 to-indigo-500",
   },
   {
-    icon: <LayoutPlaneboard className="h-10 w-10" />,
+    icon: <LayoutDashboard className="h-10 w-10" />,
     title: "Prototyping",
     description: "We create interactive mockups and wireframes to visualize the solution before committing to full development.",
     color: "from-violet-500 to-purple-500",
@@ -21,7 +21,7 @@ const steps = [
     color: "from-rose-500 to-pink-500",
   },
   {
-    icon: <Flask className="h-10 w-10" />,
+    icon: <Beaker className="h-10 w-10" />,
     title: "Testing",
     description: "Rigorous testing ensures your software is robust, secure, and delivers a seamless user experience across devices.",
     color: "from-amber-500 to-orange-500",
