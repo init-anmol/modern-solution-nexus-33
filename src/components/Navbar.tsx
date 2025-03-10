@@ -2,20 +2,21 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { name: "About", href: "/#about" },
-  { name: "Services", href: "/#services" },
-  { name: "Technologies", href: "/#technologies" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Technologies", href: "/technologies" },
   { name: "Portfolio", href: "/portfolio" },
-  { name: "Solutions", href: "/#solutions" },
-  { name: "Contact", href: "/#contact" },
+  { name: "Solutions", href: "/solutions" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
   const [isHomePage, setIsHomePage] = useState(true);
 
   useEffect(() => {
@@ -28,19 +29,19 @@ const Navbar = () => {
     };
 
     // Check if we're on the home page
-    setIsHomePage(window.location.pathname === "/");
+    setIsHomePage(location.pathname === "/");
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setIsMobileMenuOpen(false);
     
     // If it's an anchor link on the homepage
-    if (href.startsWith('#') || (href.includes('#') && isHomePage)) {
+    if (href.startsWith('#') && isHomePage) {
       e.preventDefault();
-      const targetId = href.includes('#') ? href.split('#')[1] : href.substring(1);
+      const targetId = href.substring(1);
       const element = document.getElementById(targetId);
       
       if (element) {
@@ -49,11 +50,11 @@ const Navbar = () => {
         // Update URL hash without jumping
         window.history.pushState(null, "", href);
       }
-    } 
-    // If it's a navigation to another page
-    else if (!href.startsWith('#')) {
-      // Let the Link component handle navigation
     }
+    // If it's a navigation to a section on homepage from another page
+    else if (href.startsWith('#') && !isHomePage) {
+      // Let React Router handle the navigation to homepage first
+    } 
   };
 
   return (
@@ -78,24 +79,14 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              link.href.includes('#') && !link.href.startsWith('/') ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium transition-colors hover:text-primary"
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-sm font-medium transition-colors hover:text-primary"
-                >
-                  {link.name}
-                </Link>
-              )
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-sm font-medium transition-colors hover:text-primary"
+                onClick={(e) => link.href.includes('#') && handleLinkClick(e, link.href)}
+              >
+                {link.name}
+              </Link>
             ))}
             <Button className="ml-4 button-hover">Get Started</Button>
           </nav>
@@ -115,25 +106,17 @@ const Navbar = () => {
         <div className="md:hidden animate-fade-in">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm">
             {navLinks.map((link) => (
-              link.href.includes('#') && !link.href.startsWith('/') ? (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary"
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                >
-                  {link.name}
-                </a>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              )
+              <Link
+                key={link.name}
+                to={link.href}
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary"
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  if (link.href.includes('#')) handleLinkClick(e, link.href);
+                }}
+              >
+                {link.name}
+              </Link>
             ))}
             <div className="px-3 py-2">
               <Button className="w-full button-hover">Get Started</Button>
