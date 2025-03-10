@@ -2,15 +2,6 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Brand logos
-const brands = [
-  { name: "Microsoft", logo: "/microsoft-logo.svg" },
-  { name: "Google", logo: "/google-logo.svg" },
-  { name: "Amazon", logo: "/amazon-logo.svg" },
-  { name: "IBM", logo: "/ibm-logo.svg" },
-  { name: "Adobe", logo: "/adobe-logo.svg" },
-];
-
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center py-32">
@@ -22,6 +13,19 @@ const Hero = () => {
       </div>
 
       <div className="section-container">
+        {/* Banner Section */}
+        <div className="w-full mb-16 rounded-2xl overflow-hidden relative" data-aos="fade-up">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/80 to-blue-600/80 mix-blend-multiply"></div>
+          <div className="relative h-64 md:h-80 bg-cover bg-center flex items-center justify-center" 
+               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3882&q=80')" }}>
+            <div className="text-center px-6 py-10 backdrop-blur-sm bg-black/10 rounded-xl w-full max-w-3xl">
+              <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full mb-3">Innovative Tech Solutions</span>
+              <h2 className="text-white text-2xl md:text-3xl font-bold mb-2">Accelerate Your Digital Transformation</h2>
+              <p className="text-white/90 max-w-xl mx-auto">Unlock your business potential with cutting-edge technology solutions</p>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-4xl mx-auto text-center">
           <div data-aos="fade-up">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight mb-6">
